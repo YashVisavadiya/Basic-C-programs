@@ -1,54 +1,39 @@
 #include <stdio.h>
 
-int angleofhourhand(int h, int m)
+float angleofhourhand(int h, int m)
 {
-    int ansh = 0;
+    float ansh = 0;
     int hour = h;
     int min = m;
 
-    for (int i = 0; i < h; i++)
+    ansh=h*30;
+    for(int i=0;i<min;i++)
     {
-        ansh += 30;
-    }
-    if (min % 12 == 0)
-    {
-        min = min / 12;
-    }
-    else
-    {
-        min = min / 12 + 1;
-    }
-    for (int i = 0; i < min; i++)
-    {
-        ansh += 5;
+        ansh+=0.5;
     }
 
     if (ansh >= 360)
     {
-        ansh = ansh % 360;
+        ansh = ansh - 360;
     }
-
-    // printf("%d Degree ",ansh);
     return ansh;
 }
 
-int angleofminhand(int h, int m)
+float angleofminhand(int h, int m)
 {
     int ansm = 0;
     int min = m;
 
-    for (int i = 0; i < m; i++)
-    {
-        ansm += 6;
-    }
+    ansm=m*6;
+
     return ansm;
 }
 
-int anglebetweenHourhandandMinhand(int h, int m)
+void anglebetweenHourhandandMinhand(int h, int m)
 {
-    int angleofhour = angleofhourhand(h, m);
-    int angleofmin = angleofminhand(h, m);
-    int anglebetweenHourandMin;
+    float angleofhour = angleofhourhand(h, m);
+    float angleofmin = angleofminhand(h, m);
+    float anglebetweenHourandMin;
 
     if (angleofhour > angleofmin)
     {
@@ -63,7 +48,8 @@ int anglebetweenHourhandandMinhand(int h, int m)
     {
         anglebetweenHourandMin = 360 - anglebetweenHourandMin;
     }
-    printf("%d Degree ", anglebetweenHourandMin);
+
+    printf("\n%.2f Degree ", anglebetweenHourandMin);
 }
 
 void main()
